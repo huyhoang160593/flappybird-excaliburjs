@@ -1,4 +1,4 @@
-import { Actor, type Engine, Vector } from "excalibur";
+import { Actor, clamp, type Engine, Keys, Vector } from "excalibur";
 import { Resources } from "../resources";
 import engineOptions from "../config/engine-options.config";
 
@@ -6,12 +6,12 @@ const {
 	resolution: { height: screenHeight, width: screenWidth },
 } = engineOptions;
 const {
-	images: { Bird },
+	images: { Bird, Ground },
 } = Resources;
 
 export class BirdActor extends Actor {
-  gravity = 20;
-  dy = 0;
+	gravity = 20;
+	dy = 0;
 
 	constructor() {
 		super({
@@ -21,12 +21,30 @@ export class BirdActor extends Actor {
 			height: Bird.height,
 			anchor: Vector.Zero,
 		});
-    this.graphics.add(Bird.toSprite());
+		this.graphics.add(Bird.toSprite());
 	}
 
-  update(engine: Engine, delta: number): void {
-    super.update(engine, delta);
-    this.dy += this.gravity * delta / 1000;
-    this.pos.y += this.dy;
-  }
+	onInitialize(engine: Engine): void {
+		super.onInitialize(engine);
+		engine.input.pointers.primary.on("down", () => {
+			this.dy = -5;
+		});
+	}
+
+	update(engine: Engine, delta: number): void {
+		super.update(engine, delta);
+		this.dy += (this.gravity * delta) / 1000;
+
+		const newBirdPosition = this.pos.y + this.dy;
+
+		if (engine.input.keyboard.wasPressed(Keys.Space)) {
+			this.dy = -5;
+		}
+
+		this.pos.y = clamp(
+			newBirdPosition,
+			0,
+			screenHeight - Bird.height - Ground.height,
+		);
+	}
 }
