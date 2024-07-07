@@ -1,9 +1,11 @@
 import { ImageSource, type Loadable, Loader } from "excalibur";
-import sword from "./images/sword.png";
+import background from "./resources/images/background.png";
+import ground from "./resources/images/ground.png";
 
 export const Resources = {
 	images: {
-		Sword: new ImageSource(sword),
+    Background: new ImageSource(background),
+    Ground: new ImageSource(ground),
 	},
 } as const satisfies ResourcesType;
 

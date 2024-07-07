@@ -1,16 +1,19 @@
 import { Engine } from "excalibur";
-import { Player } from "./player";
 import { loader } from "./resources";
+import engineOptions from "./config/engine-options.config";
+import { GameplayScene } from "./scenes/gameplay.scene";
 
 class Game extends Engine {
 	constructor() {
-		super({ width: 800, height: 600 });
+		super(engineOptions);
 	}
 	initialize() {
-		const player = new Player();
-		this.add(player);
+		const gameplayScene = new GameplayScene();
+		this.addScene(gameplayScene.name, gameplayScene);
 
-		this.start(loader);
+		this.start(loader).then(() => {
+			this.goToScene(gameplayScene.name);
+		});
 	}
 }
 
