@@ -1,4 +1,4 @@
-import { Actor, Vector } from "excalibur";
+import { Actor, type Engine, Vector } from "excalibur";
 import { Resources } from "../resources";
 import engineOptions from "../config/engine-options.config";
 
@@ -8,7 +8,11 @@ const {
 const {
 	images: { Bird },
 } = Resources;
+
 export class BirdActor extends Actor {
+  gravity = 20;
+  dy = 0;
+
 	constructor() {
 		super({
 			x: screenWidth / 2 - Bird.width / 2,
@@ -19,4 +23,10 @@ export class BirdActor extends Actor {
 		});
     this.graphics.add(Bird.toSprite());
 	}
+
+  update(engine: Engine, delta: number): void {
+    super.update(engine, delta);
+    this.dy += this.gravity * delta / 1000;
+    this.pos.y += this.dy;
+  }
 }
