@@ -1,6 +1,6 @@
 import { Engine } from "excalibur";
-import { loader } from "./resources";
 import engineOptions from "./config/engine-options.config";
+import { loader } from "./resources";
 import { GameplayScene } from "./scenes/gameplay.scene";
 
 class Game extends Engine {

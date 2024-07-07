@@ -1,41 +1,36 @@
 {
-  "author": "The 99's Puppycat",
-  "dependencies": {
-    "@excaliburjs/testing": "^0.25.1"
-  },
-  "description": "Excalibur TypeScript custom template for Vite with linting settings",
-  "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "excalibur": "0.29.3",
-    "typescript": "5.5.3",
-    "vite": "^5.3.3"
-  },
-  "homepage": "https://github.com/huyhoang160593/excalibur-template-ts-vite#readme",
-  "keywords": [
-    "excalibur",
-    "excaliburjs",
-    "vite",
-    "game-engine",
-    "game-template"
-  ],
-  "license": "BSD-2-Clause",
-  "name": "custom-excalibur-ts-vite",
-  "scripts": {
-    "build": "$npm_execpath run lint && tsc && vite build",
-    "build-win": "%npm_execpath% run lint && tsc && vite build",
-    "dev": "vite",
-    "lint": "biome check --write ./",
-    "serve": "vite preview",
-    "start": "vite",
-    "test": "$npm_execpath run build && ex-test -d ./dist -t ./test/test.js",
-    "test-win": "%npm_execpath% run build && ex-test -d ./dist -t ./test/test.js"
-  },
-  "trustedDependencies": [
-    "@biomejs/biome",
-    "core-js",
-    "esbuild",
-    "puppeteer"
-  ],
-  "type": "module",
-  "version": "1.0.1"
+	"author": "The 99's Puppycat",
+	"dependencies": {
+		"@excaliburjs/testing": "^0.25.1"
+	},
+	"description": "Excalibur TypeScript custom template for Vite with linting settings",
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"excalibur": "0.29.3",
+		"typescript": "5.5.3",
+		"vite": "^5.3.3"
+	},
+	"homepage": "https://github.com/huyhoang160593/excalibur-template-ts-vite#readme",
+	"keywords": [
+		"excalibur",
+		"excaliburjs",
+		"vite",
+		"game-engine",
+		"game-template"
+	],
+	"license": "BSD-2-Clause",
+	"name": "custom-excalibur-ts-vite",
+	"scripts": {
+		"build": "$npm_execpath run lint && tsc && vite build",
+		"build-win": "%npm_execpath% run lint && tsc && vite build",
+		"dev": "vite",
+		"lint": "biome check --write ./",
+		"serve": "vite preview",
+		"start": "vite",
+		"test": "$npm_execpath run build && ex-test -d ./dist -t ./test/test.js",
+		"test-win": "%npm_execpath% run build && ex-test -d ./dist -t ./test/test.js"
+	},
+	"trustedDependencies": ["@biomejs/biome", "core-js", "esbuild", "puppeteer"],
+	"type": "module",
+	"version": "1.0.1"
 }
