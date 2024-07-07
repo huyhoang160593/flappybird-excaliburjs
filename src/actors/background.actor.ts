@@ -1,7 +1,6 @@
 import { Actor, type Engine, type ImageSource, Vector } from "excalibur";
 
 export class BackgroundActor extends Actor {
-
 	scrollXPosition = 0;
 	scrollSpeed = 0;
 	loopingPoint = 0;
@@ -12,6 +11,7 @@ export class BackgroundActor extends Actor {
 		imageSource: ImageSource,
 		scrollSpeed = 30,
 		loopingPoint = 0,
+    z = 1
 	) {
 		super({
 			x,
@@ -19,6 +19,7 @@ export class BackgroundActor extends Actor {
 			width: imageSource.width,
 			height: imageSource.height,
 			anchor: Vector.Zero,
+      z
 		});
 		this.scrollSpeed = scrollSpeed;
 		this.loopingPoint = loopingPoint;
@@ -28,7 +29,7 @@ export class BackgroundActor extends Actor {
 
 	update(engine: Engine, delta: number): void {
 		super.update(engine, delta);
-    this.updateBackgroundPosition(delta);
+		this.updateBackgroundPosition(delta);
 	}
 
 	private updateBackgroundPosition(delta: number) {

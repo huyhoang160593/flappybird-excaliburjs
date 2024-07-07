@@ -1,13 +1,15 @@
 import { ImageSource, type Loadable, Loader } from "excalibur";
 import background from "./resources/images/background.png";
-import ground from "./resources/images/ground.png";
 import bird from "./resources/images/bird.png";
+import ground from "./resources/images/ground.png";
+import pipe from "./resources/images/pipe.png";
 
 export const Resources = {
 	images: {
 		Background: new ImageSource(background),
 		Ground: new ImageSource(ground),
-    Bird: new ImageSource(bird)
+		Bird: new ImageSource(bird),
+		Pipe: new ImageSource(pipe),
 	},
 } as const satisfies ResourcesType;
 

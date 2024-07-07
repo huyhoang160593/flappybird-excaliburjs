@@ -1,6 +1,6 @@
-import { Actor, clamp, type Engine, Keys, Vector } from "excalibur";
-import { Resources } from "../resources";
+import { Actor, type Engine, Keys, Vector, clamp } from "excalibur";
 import engineOptions from "../config/engine-options.config";
+import { Resources } from "../resources";
 
 const {
 	resolution: { height: screenHeight, width: screenWidth },
@@ -20,6 +20,7 @@ export class BirdActor extends Actor {
 			width: Bird.width,
 			height: Bird.height,
 			anchor: Vector.Zero,
+      z: 2
 		});
 		this.graphics.add(Bird.toSprite());
 	}
