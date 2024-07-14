@@ -1,32 +1,26 @@
-import { Actor, type Engine, randomIntInRange, Vector } from "excalibur";
+import { Actor, type ActorArgs, randomIntInRange, Vector } from "excalibur";
 import engineOptions from "../config/engine-options.config";
 import { Resources } from "../resources";
-import { GROUND_SCROLL_SPEED } from "../constansts/common.constants";
 
 const {
-	resolution: { height: screenHeight, width: screenWidth },
+	resolution: { width: screenWidth },
 } = engineOptions;
 const {
 	images: { Pipe },
 } = Resources;
 
 export class PipeActor extends Actor {
-	constructor() {
-    const randomY = randomIntInRange(screenHeight / 2, screenHeight - 10);
-		super({
+	constructor(orientation: "top" | "bottom", yPos: number) {
+		const actorArgs: ActorArgs = {
 			x: screenWidth,
-			y: randomY,
+			y: orientation === "top" ? yPos + Pipe.height : yPos,
 			width: Pipe.width,
 			height: Pipe.height,
 			anchor: Vector.Zero,
-      z: randomIntInRange(1, 3),
-		});
+			scale: new Vector(1, orientation === "top" ? -1 : 1),
+			z: randomIntInRange(1, 3),
+		};
+		super(actorArgs);
 		this.graphics.add(Pipe.toSprite());
-	}
-
-	update(engine: Engine, delta: number): void {
-		super.update(engine, delta);
-
-		this.pos.x -= (delta / 1000) * GROUND_SCROLL_SPEED;
 	}
 }
