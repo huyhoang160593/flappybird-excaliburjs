@@ -17,6 +17,9 @@ const {
 export class GameplayScene extends Scene {
 	public readonly name = "gameplay";
 	public lastY = -Pipe.height + randomIntInRange(1, 80) + 20;
+	public scrolling = true;
+	public bird = new BirdActor();
+	public pipePairsMap: Map<number, PipePair> = new Map<number, PipePair>();
 
 	onInitialize(_engine: Engine): void {
 		this.add(new BackgroundActor(0, 0, Background, 30, 413));
@@ -48,16 +51,34 @@ export class GameplayScene extends Scene {
 						),
 					);
 					this.lastY = y;
-					this.add(new PipePair(y));
+					const pipePair = new PipePair(y);
+          if (this.pipePairsMap.size === 0) {
+					  this.add(pipePair);
+					  this.pipePairsMap.set(pipePair.id, pipePair);
+          }
 				},
 			}),
 		);
 		this.timers[0].start();
 
-		this.add(new BirdActor());
+		this.add(this.bird);
 	}
 	update(engine: Engine, delta: number): void {
-		super.update(engine, delta);
-		console.log(this.actors.length);
+		if (this.scrolling) {
+			super.update(engine, delta);
+			for (const [id, pipePair] of this.pipePairsMap.entries()) {
+				if (pipePair.pipes) {
+					for (const [key, pipe] of Object.entries(pipePair.pipes)) {
+            console.log(key,pipe.pos, pipe.pos.y);
+						if (this.bird.collides(pipe)) {
+							this.scrolling = false;
+						}
+					}
+				}
+				if (pipePair.isKilled()) {
+					this.pipePairsMap.delete(id);
+				}
+			}
+		}
 	}
 }

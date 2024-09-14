@@ -14,10 +14,11 @@ const {
 
 export class PipePair extends Actor {
 	public pipes: Record<"top" | "bottom", PipeActor> | undefined;
+	public posX = screenWidth + 32;
 
 	constructor(yPos: number) {
 		super({
-			x: screenWidth + 32,
+			x: 0,
 			y: yPos,
 		});
 		this.pipes = {
@@ -32,11 +33,11 @@ export class PipePair extends Actor {
 
 	update(engine: Engine, delta: number): void {
 		super.update(engine, delta);
-		if (this.pos.x > -Pipe.width) {
-			this.pos.x -= GROUND_SCROLL_SPEED * (delta / 1000);
+		if (this.posX > -Pipe.width) {
+			this.posX -= GROUND_SCROLL_SPEED * (delta / 1000);
 			if (!this.pipes) return;
-			this.pipes.top.pos.x = this.pos.x;
-			this.pipes.bottom.pos.x = this.pos.x;
+			this.pipes.top.pos.x = this.posX;
+			this.pipes.bottom.pos.x = this.posX;
 		} else {
 			this.kill();
 		}
