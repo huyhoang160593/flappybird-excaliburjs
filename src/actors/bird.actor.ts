@@ -20,7 +20,7 @@ export class BirdActor extends Actor {
 			width: Bird.width,
 			height: Bird.height,
 			anchor: Vector.Zero,
-      z: 2
+			z: 2,
 		});
 		this.graphics.add(Bird.toSprite());
 	}

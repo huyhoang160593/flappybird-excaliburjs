@@ -11,7 +11,7 @@ export class BackgroundActor extends Actor {
 		imageSource: ImageSource,
 		scrollSpeed = 30,
 		loopingPoint = 0,
-    z = 1
+		z = 1,
 	) {
 		super({
 			x,
@@ -19,7 +19,7 @@ export class BackgroundActor extends Actor {
 			width: imageSource.width,
 			height: imageSource.height,
 			anchor: Vector.Zero,
-      z
+			z,
 		});
 		this.scrollSpeed = scrollSpeed;
 		this.loopingPoint = loopingPoint;

@@ -1,4 +1,4 @@
-import { Actor, type ActorArgs, randomIntInRange, Vector } from "excalibur";
+import { Actor, type ActorArgs, Vector, randomIntInRange } from "excalibur";
 import engineOptions from "../config/engine-options.config";
 import { Resources } from "../resources";
 
